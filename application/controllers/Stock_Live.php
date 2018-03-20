@@ -5,10 +5,12 @@ class Stock_Live extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper("url");
+		$this->load->library('session');
 	}
 
 	public function index()
 	{
+		$user_id = $this->session->userdata('User_id');
 		$url = "https://api.upstox.com/index/oauth/token";
 
 		/*replace below values with actual one*/
@@ -61,7 +63,7 @@ class Stock_Live extends CI_Controller {
 		if ( $_GET['code'] ):
 			$access_token = json_decode($result);
 			$this->load->model('Stock_Token_log');
-			echo  $this->Stock_Token_log->add_token($access_token->access_token);
+			echo  $this->Stock_Token_log->add_token($user_id, $access_token->access_token);
 			echo "<script type=\"text/javascript\" charset=\"utf-8\">window.self.close()</script>";
 		endif;
 		
