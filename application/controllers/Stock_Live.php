@@ -12,15 +12,12 @@ class Stock_Live extends CI_Controller {
 	{
 		$user_id = $this->session->userdata('User_id');
 		$url = "https://api.upstox.com/index/oauth/token";
-
 		/*replace below values with actual one*/
-		//$code = "be8de760fcb474b423c02553680767ff252838e0";
 		$code = $_GET['code'];
 		$api_key = "3tAI6YEbd48Hqw5zEV2YM9brEDNaps4V7dRcblQM";
 		$api_secret = "jt781oygob";
 		$redirect_uri = base_url() ."Stock_Live";
-		//$redirect_url = "http://13.127.87.49/sharemarketprofit/Stock_Live";
-
+		
 		$data = array(
 			"code" => $code,
 			"grant_type" => "authorization_code",
@@ -49,8 +46,7 @@ class Stock_Live extends CI_Controller {
 		curl_close($ch);
 
 		/*if cURL fail echo error*/
-		if ($httpcode == 0)
-			{
+		if ($httpcode == 0):
 			$data = array(
 				"Status" => "Error",
 				"Message" => $err
@@ -58,7 +54,7 @@ class Stock_Live extends CI_Controller {
 			$data_string = json_encode($data);
 			echo $data_string;
 			return;
-			}
+		endif;
 		/*if Access Token Generated */
 		if ( $_GET['code'] ):
 			$access_token = json_decode($result);
@@ -66,9 +62,6 @@ class Stock_Live extends CI_Controller {
 			echo  $this->Stock_Token_log->add_token($user_id, $access_token->access_token);
 			echo "<script type=\"text/javascript\" charset=\"utf-8\">window.self.close()</script>";
 		endif;
-		
-		
-		
 	}
 
 }

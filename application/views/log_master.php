@@ -253,8 +253,6 @@ include('footer.php');
 ?>
 <script>
 	
-	
-	
 	var verification;
 		 $(document).ready(function() {
 		   setInterval(fetchdata, 1000);
@@ -265,18 +263,6 @@ include('footer.php');
 	  $("#sell_div").hide(); 
 	   });
 	
-	
-	 function Close() {
-        window.opener.location.href = window.opener.location.href;
-        document.location.href = document.location.href;
-        //window.opener.location.reload(true);
-        self.close();
-
-
-       //winOpener = window.self.opener;
-       //winOpener.location.reload();
-       //window.close();
-     }
 	
 	function PopupCenter() 
 	{
@@ -311,8 +297,6 @@ include('footer.php');
 			type: 'post',
 			success: function(response)
 			{
-				
-				
 				// Perform operation on the return value
 				//alert(response);
 				var content = ""; 

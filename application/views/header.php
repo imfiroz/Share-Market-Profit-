@@ -699,7 +699,7 @@ if (basename($_SERVER['PHP_SELF']) == $_SESSION['previous']) {
              dataType: "json",       
 		   success: function(data)  
 		   {
-                     //  alert(JSON.stringify(data));
+                    alert(JSON.stringify(data));
                    //  console.log(data);
                       
                        var content="";
@@ -733,7 +733,7 @@ if (basename($_SERVER['PHP_SELF']) == $_SESSION['previous']) {
                                         content+='<span class="pull-right-container">';
                                         content+='</span>';        
                                         content+='</a>';   
-					content+='<div class="sidebar-submenu">',
+										content+='<div class="sidebar-submenu">',
                                         content+='<ul style="list-style: none;">';                                       
                                         content+='<li ><a href="'+data[i].onclick+'"><img src="<?php echo base_url();?>icons/'+data[i].fa_fa_icon+'" width="16px" height="18px"><span style="font-size: 18px;color:#606f8d;font-weight:bold;">'+data[i].child+'</span></a></li>';                                  			
                                     }//
