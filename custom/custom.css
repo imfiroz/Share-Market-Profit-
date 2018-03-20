@@ -1,0 +1,62 @@
+/* Insert Your Custom CSS Here */
+html, body {
+	height: 100%;
+}
+
+footer {
+	position: absolute;
+	bottom: auto;
+	width: 100%;
+}
+
+.custom-top {
+	top: 0px !important;
+}
+
+.custom-padding {
+	padding: 0px !important;
+}
+
+.custom-padding1 {
+	padding: 5px 50px !important;
+	border: 1px solid;
+}
+
+@media ( min-width : 768px) {
+	.modal-dialog {
+		width: 900px;
+		margin: 30px auto;
+	}
+}
+
+.modal-body {
+	max-height: 500px;
+	padding-bottom: 0px !important;
+	overflow-y: auto;
+}
+
+.modal-header {
+	padding: 10px 25px !important;
+	padding-bottom: 0px !important;
+}
+
+.modal-content {
+	background: #fff !important;
+}
+
+.modal-footer {
+	padding-top: 0px;
+}
+
+.instruct {
+	position: absolute;
+	bottom: 0px;
+}
+
+.custom-btn {
+	margin-bottom: 10px;
+}
+
+.form-group {
+	clear: both;
+}

@@ -1,0 +1,28 @@
+SELECT * FROM `tbl_customer_agreement_transaction` WHERE Product_vendor_id=148 group by Customer_Agreement_Id 
+
+
+
+
+
+SELECT tbl_customer_agreement_transaction.*,tbl_customer.Name from tbl_customer left join tbl_customer_agreement_transaction on tbl_customer_agreement_transaction.Customer_id=tbl_customer.Customer_id WHERE tbl_customer_agreement_transaction.Product_vendor_id=148 group by tbl_customer.Name,tbl_customer_agreement_transaction.Customer_Agreement_Id
+
+
+
+
+
+
+
+SELECT DISTINCT(Customer_id) from tbl_customer_agreement
+SELECT distinct(Customer_id) from tbl_customer_agreement_transaction where Product_vendor_id=148
+select DISTINCT(customer_id) from tbl_customer_agreement_transaction where Product_vendor_id=148
+
+
+
+
+
+SELECT tbl_customer.Name from tbl_customer left join tbl_customer_agreement on tbl_customer_agreement.Customer_id=tbl_customer.Customer_id group by tbl_customer_agreement.Customer_id
+
+SELECT tbl_customer.Name,tbl_customer.Mobile,tbl_customer.Email from tbl_customer left join tbl_customer_agreement_transaction on tbl_customer_agreement_transaction.Customer_id=tbl_customer.Customer_id where tbl_customer_agreement_transaction.Product_vendor_id=144 group by tbl_customer_agreement_transaction.Customer_id
+
+
+SELECT tbl_customer.Name,tbl_customer.Mobile,tbl_customer.Email from tbl_customer left join tbl_customer_agreement on tbl_customer_agreement_transaction.Customer_id=tbl_customer.Customer_id group by tbl_customer_agreement.Customer_id
