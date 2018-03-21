@@ -19,7 +19,7 @@ include('header.php');
          </div>
     </div>
   
-     <div class="modal fade" id="editUserPopUp333" tabindex="-1" 
+    <div class="modal fade" id="editUserPopUp333" tabindex="-1" 
                                              role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true" role="dialog">
                                             <div class="modal-dialog">
 

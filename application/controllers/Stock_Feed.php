@@ -7,7 +7,6 @@ class Stock_Feed extends CI_Controller
     {
             parent::__construct();
 
-            
             $this->load->helper("url");
             $this->load->library('session');
             if (!$this->session->userdata('is_logged_in'))
@@ -20,5 +19,4 @@ class Stock_Feed extends CI_Controller
 	{
 		$this->load->view('vw_stock_live');
 	}
-	
 }

@@ -1,5 +1,5 @@
- <?php
-include('header.php');
+<?php
+	include('header.php');
 ?>
  <script src="<?php echo base_url(); ?>assets/js/validate.js"></script>        
                     
@@ -7,7 +7,7 @@ include('header.php');
  <div id="page-content-wrapper">
             <div id="page-content">
                 
-                    <div class="container">
+<div class="container">
 <div id="page-title">
     <h2>Create Script</h2> 
     <div id="theme-options" class="admin-options">
@@ -375,10 +375,10 @@ else{
            // dataType:'JSON',
             success: function (msg) {
 				
-           //   alert(JSON.stringify(msg));
+            //alert(JSON.stringify(msg));
       
 		  if(msg==1){
-				  alert("Information Loaded Successfully");
+				  alert("Information Loaded and Notification Send Successfully.");
 				//url=msg.redirect_path;
 				   window.location ="<?php echo base_url();?>"+"View_Script";
 				//window.location.reload=url;

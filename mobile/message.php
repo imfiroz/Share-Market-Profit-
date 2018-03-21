@@ -1,10 +1,13 @@
 <?php
 function getDBConnect(){
 	$dbms = 'mysql';
-	$host = 'localhost'; 
+	//$host = 'localhost'; 
+	$host = 'sharemarketprofits.cxehmpglmuob.ap-south-1.rds.amazonaws.com';
 	$db = 'sharemar_data';
-	$user = 'sharemar_usr';
-	$pass = 'fj+iX7Q,}Z}A';
+	//$user = 'sharemar_usr';
+	//$pass = 'fj+iX7Q,}Z}A';
+	$user = 'sharemarket_data';
+	$pass = '12345678';
 	$dsn = "$dbms:host=$host;dbname=$db";
 	$cn=new PDO($dsn, $user, $pass);
 

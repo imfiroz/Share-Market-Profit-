@@ -58,13 +58,14 @@ class Create_Notification_Data extends CI_Model
                       
                                  
 		}
-      public function db_save_branch_data() {
+      public function db_save_branch_data($notification_txt = NULL) {
         date_default_timezone_set('Asia/Kolkata');  
         $date1 = date('Y-M-d h:i:s A', time());
-        $notification=$this->input->post('txt_branch_name');
+        $notification = $this->input->post('txt_branch_name');
+		if( $notification_txt ){ $notification = $notification_txt;	}
         $data = array
             (
-            'Name' => $this->input->post('txt_branch_name'),
+            'Name' => $notification,
             'date'=> $date1,
             
         );

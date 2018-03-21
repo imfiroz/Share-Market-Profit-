@@ -7,7 +7,7 @@ include('header.php');
  <div id="page-content-wrapper">
             <div id="page-content">
                 
-                    <div class="container">
+<div class="container">
 <div id="page-title">
     <h2>Create Notification</h2> 
     <div id="theme-options" class="admin-options">

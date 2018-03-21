@@ -128,14 +128,24 @@ class Create_Script extends CI_Controller
 		{
 			echo 1;
 			//*Generate Notification Here*//
-			
+			$this->load->model('View_Script_Data');
+            $script_data = $this->View_Script_Data->fetch_Script_data_to_update($last_inserted_id);
 			//Get Script Data
-			
 			//Find Treading Name and Treading Type
+			if( $script_data[0]['trading_type'] == 1 ):
+				$trading_type =  'EQUITY';
+			elseif(	$script_data[0]['trading_type'] == 2 ):
+				$trading_type =  'FUTURE & OPTION';
+			elseif(	$script_data[0]['trading_type'] == 3 ):
+				$trading_type =  'BTST';
+			elseif(	$script_data[0]['trading_type'] == 4 ):
+				$trading_type =  'COMMODITY';
+			endif;
 			
-			//Create Notification 
-			//$this->load->model('Create_Notification_Data');
-            //$last_inserted_id = $this->Create_Notification_Data->db_save_branch_data();
+			$notification_txt = $script_data[0]['Name']." (".$trading_type.") - ADDED."; 
+			//Create Notification
+			$this->load->model('Create_Notification_Data');
+            $last_inserted_id = $this->Create_Notification_Data->db_save_branch_data($notification_txt);
 		}   
     }
 	function create_folder_function($last_inserted_id, $EventKey) 
