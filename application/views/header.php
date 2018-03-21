@@ -699,7 +699,7 @@ if (basename($_SERVER['PHP_SELF']) == $_SESSION['previous']) {
              dataType: "json",       
 		   success: function(data)  
 		   {
-                    alert(JSON.stringify(data));
+                    //alert(JSON.stringify(data));
                    //  console.log(data);
                       
                        var content="";

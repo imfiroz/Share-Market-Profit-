@@ -2,7 +2,7 @@
 include('header.php');
 ?>
 <script src="<?php echo base_url(); ?>assets/js/validate.js"></script>
- <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+ <script type="text/javascript"  src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript"  src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
 
 <div id="page-content-wrapper">

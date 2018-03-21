@@ -18,8 +18,7 @@ class Stock_Feed extends CI_Controller
     }
     public function index()
 	{
-		echo 'Stock Feed';
-		//$this->load->view('view_script');
+		$this->load->view('vw_stock_live');
 	}
 	
 }
