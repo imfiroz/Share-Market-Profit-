@@ -18,5 +18,12 @@ class Stock_Token_log extends CI_Model
 						->where("vendor_id", $user_id)
 						->update("stock_api", $data);
 		}
+		public function get_api_token()
+		{
+			$this->db
+					->where('token_id', 1)
+					->get('stock_api');
+			return $query->row();
+		}
 		
 	}

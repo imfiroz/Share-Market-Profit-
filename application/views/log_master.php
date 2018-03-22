@@ -264,32 +264,6 @@ include('footer.php');
 	   });
 	
 	
-	function PopupCenter() 
-	{
-		var url = "https://api.upstox.com/index/dialog/authorize?apiKey=3tAI6YEbd48Hqw5zEV2YM9brEDNaps4V7dRcblQM&redirect_uri=<?= base_url() ?>Stock_Live&response_type=code";
-		var title = "Upstox";
-		var w = "500";
-		var h = "270";
-    	// Fixes dual-screen position                         Most browsers      Firefox
-		var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
-		var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
-
-		var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-		var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-
-		var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-		var top = ((height / 2) - (h / 2)) + dualScreenTop;
-		
-		
-		var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-
-		// Puts focus on the newWindow
-		if (window.focus) {
-			newWindow.focus();
-		}
-	}
-	
-
 	function fetchdata()
 	{
 		$.ajax({
@@ -319,7 +293,6 @@ include('footer.php');
 			   //alert(JSON.stringify(data));
 			   var content = "";   
 			   content+='<div class="example-box-wrapper">';
-			   content+='<input type="button" OnClick="PopupCenter()" value="Open Upstox" />';
 			   content+='<table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0">';
 				
 			   var len = data.length;
