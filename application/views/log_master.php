@@ -48,43 +48,43 @@ include('header.php');
                 <form class="form-horizontal bordered-row" id="button_submit" name="button_submit" method="post">
 				<div class="form-horizontal bordered-row"   >
                  <div class="form-group">
-					<label class="col-sm-3 control-label">Trading Type</label>
+					<label class="col-sm-3 control-label">Trading Type:</label>
 					<div class="col-sm-6">
                       <select class="form-control" name="Trading" id="Trading"></select>
 					</div>
 				</div>
                 <div class="form-group">
-					<label class="col-sm-3 control-label">Script</label>
+					<label class="col-sm-3 control-label">Script:</label>
 					<div class="col-sm-6">
                        <select class="form-control" name="Script" id="Script"></select> 
 					</div>
 				</div>
                 <div class="form-group">
-					<label class="col-sm-3 control-label">Transaction Type</label>
+					<label class="col-sm-3 control-label">Transaction Type:</label>
 					<div class="col-sm-6">
                       <select class="form-control" name="Transaction" id="Transaction"></select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">buy@</label>
+					<label class="col-sm-3 control-label">Entry Price:</label>
 					<div class="col-sm-6">
                        <input type="text" class="form-control" name="buy_text" id="buy_text"   placeholder="Enter Text...">
                     </div>
 				</div>
                 <div class="form-group">
-					<label class="col-sm-3 control-label">sell@</label>
+					<label class="col-sm-3 control-label">Stop Loss:</label>
 					<div class="col-sm-6">
                        <input type="text" class="form-control" name="sell_text" id="sell_text" placeholder="Enter Text...">
 					</div>
 				</div>
                 <div class="form-group">
-					<label class="col-sm-3 control-label">Target1</label>
+					<label class="col-sm-3 control-label">Target 1:</label>
 					<div class="col-sm-6">
                        <input type="text" class="form-control" name="Target1" id="Target1" placeholder="Enter Target1..." onkeypress="return onlyNumbersWithdecimel(event);" >
 					</div>
 				</div>
                 <div class="form-group">
-					<label class="col-sm-3 control-label">Target2</label>
+					<label class="col-sm-3 control-label">Target 2:</label>
 					<div class="col-sm-6">
                        <input type="text" class="form-control" name="Target2" id="Target2" placeholder="Enter Target2..." onkeypress="return onlyNumbersWithdecimel(event);"  >
 					</div>
@@ -171,7 +171,7 @@ include('header.php');
 				 <div> &nbsp</div>
 
 				   <div class="modal-body">
-					<label class="col-md-2">Script</label>
+					<label class="col-md-2">Script:</label>
 					<div class="col-md-10">
 						<input type="hidden"  readonly class="form-control" name="sc_name" id="sc_name" >
 						 <input type="hidden"  readonly class="form-control" name="get_id_update" id="get_id_update" >
@@ -191,7 +191,7 @@ include('header.php');
 				  <div> &nbsp</div>
 				 <div> &nbsp</div>
 				<div class="modal-body">
-					<label class="col-md-2">@sell:</label>
+					<label class="col-md-2">@Entry Price:</label>
 					<div class="col-md-10">
 						<input type="text"   class="form-control" name="sell_mod" id="sell_mod" >
 					</div>                                                      
@@ -200,7 +200,7 @@ include('header.php');
 				   <div> &nbsp</div>
 				 <div> &nbsp</div>
 				  <div class="modal-body">
-					<label class="col-md-2">@buy:</label>
+					<label class="col-md-2">@Stop Loss:</label>
 					<div class="col-md-10">
 						<input type="text"   class="form-control" name="buy_mod" id="buy_mod" >
 					</div>                                                      
@@ -209,7 +209,7 @@ include('header.php');
 				   <div> &nbsp</div>
 				 <div> &nbsp</div>
 				<div class="modal-body">
-					<label class="col-md-2">Target1</label>
+					<label class="col-md-2">Target 1:</label>
 					<div class="col-md-10">
 						<input type="text"  class="form-control required" id="Target1_mod" name="Target1_mod">                                                          
 					</div>
@@ -217,7 +217,7 @@ include('header.php');
 				   <div> &nbsp</div>
 				 <div> &nbsp</div>
 				   <div class="modal-body">
-					<label class="col-md-2">Target2</label>
+					<label class="col-md-2">Target 2:</label>
 					<div class="col-md-10">
 						  <input type="text"  class="form-control required" id="Target2_mod" name="Target2_mod">
 					</div>

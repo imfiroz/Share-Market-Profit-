@@ -133,13 +133,13 @@ class View_Notification extends CI_Controller {
                         //  $this->ajax_edit_customer($id);
                         echo json_encode(array("ok" => $final_data));
                     }
-                     function ajax_delete_branch($c_id)
-            {       
-        $this->load->model('View_Branch_Data');
-      $qu=$this->db->query("delete from tbl_notification where id=$c_id");
-		echo $this->db->affected_rows();            
-    
-            }
+			function ajax_delete_branch($c_id)
+			{       
+				$this->load->model('View_Notification_Data');
+				$result = $this->View_Notification_Data->delete_notification_data($c_id);
+				echo $result;            
+
+			}
               function save_update_branch($cust_id)
              {      
                 $this->load->model('View_Notification_Data');

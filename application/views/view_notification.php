@@ -313,7 +313,7 @@ include('footer.php');
                                                                    success: function (data)
                                                                     {
                                                                       alert("Successfully deleted");                                         
-                                                                        location.reload();
+                                                                      location.reload();
                                                                     }
                                                                     
                                                                });

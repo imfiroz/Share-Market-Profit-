@@ -114,5 +114,13 @@ class View_Notification_Data extends CI_Model
                     $email_id = $this->db->get($this->table);
                     return $email_id;
                 }
+	 			function delete_notification_data($notifn_id)
+				{
+					//*Delete Notification Data*//
+					$result = $this->db->delete('tbl_notification', ['id' => $notifn_id]);
+					//*Delete Customer Notification Data*//
+					$this->db->delete('tbl_customer_notification', ['nofification_id' => $notifn_id]);
+					return $result;
+				}
         }
     ?>    

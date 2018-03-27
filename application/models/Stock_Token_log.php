@@ -20,10 +20,18 @@ class Stock_Token_log extends CI_Model
 		}
 		public function get_api_token()
 		{
-			$this->db
-					->where('token_id', 1)
-					->get('stock_api');
+			$query = $this->db->get('stock_api');
 			return $query->row();
+		}
+		public function get_script_data()
+		{
+			$query = $this->db
+						->where('is_active', '1')
+						->get('tbl_script');
+			//echo '<pre>';
+			//print_r($query->result()); exit;
+			return $query->result();
+			
 		}
 		
 	}
