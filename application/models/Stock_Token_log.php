@@ -33,5 +33,21 @@ class Stock_Token_log extends CI_Model
 			return $query->result();
 			
 		}
+		public function fetch_log($script_id)
+		{
+			//**Getting with script_id script log
+			$query = $this->db
+						->where('script_id', $script_id)
+						->get('tbl_script_log');
+		    return $query->row();
+					 
+		}
+		function update_script_log($id, $result)
+		{
+			//*Updating Script log with result
+			$this->db->where('id', $id)
+						->update("tbl_script_log", ['result' => $result, 'is_active' => 1]);                   
+			return $this->db->affected_rows();
+		}
 		
 	}

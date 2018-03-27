@@ -61,42 +61,64 @@ class Create_Script_Data extends CI_Model
                       
                                  
 		}
-                 public function db_save_branch_data() {
-                    date_default_timezone_set('Asia/Kolkata'); 
-                     //$date1 = date('Y-M-D h:i:s A', time());
-                    $date1 = date('Y-M-d h:i:s A', time());
-						$data = array
-							(
-								  'Name' => $this->input->post('txt_branch_name'),
-								 'trading_type' => $this->input->post('trading_type'),
-								 'transaction_type' => $this->input->post('transaction_type'),
-								 'entry_price' => $this->input->post('txt_price'),
-								 'Target1' => $this->input->post('Target1'),
-								 'Target2' => $this->input->post('Target2'),
-								'Toploss' => $this->input->post('Toploss'),
-								'Comment' => $this->input->post('Comment'),
-								'date' => $date1,
-								'date_time' => $date1,
-						);
-				$this->db->insert($this->table_script, $data);						
-				$vendor_id = $this->db->insert_id();							
-		 $data_company = array
-                (
-                
-								'Name' => $this->input->post('txt_branch_name'),
-								 'trading_type' => $this->input->post('trading_type'),
-								 'transaction_type' => $this->input->post('transaction_type'),
-								 'entry_price' => $this->input->post('txt_price'),
-								 'Target1' => $this->input->post('Target1'),
-								 'Target2' => $this->input->post('Target2'),
-								'Toploss' => $this->input->post('Toploss'),
-								'Comment' => $this->input->post('Comment'),
-								'action_performed' =>"Insert",								
-								'script_log_id' => $vendor_id,
-								
+	
+	 public function save_script_log($script_id)
+	 {
+		 //*Inserting Script Log 
+		date_default_timezone_set('Asia/Kolkata'); 
+		$date = date('Y-M-d h:i:s A', time());
+		$data = array
+		(
+			'script_id' => $script_id,
+			'trading_id' => $this->input->post('trading_type'),
+			'transaction_id' => $this->input->post('transaction_type'),
+			'buy_text' => $this->input->post('txt_price'),
+			'target1' => $this->input->post('Target1'),
+			'target2' => $this->input->post('Target2'),
+			'sell_text' => $this->input->post('Toploss'),
+			'result' => 'Open.',
+			'is_active' => 0,
+			'date' => $date,
+		);
+		$this->db->insert('tbl_script_log', $data);
+	 }
+		
+     public function db_save_branch_data() {
+			date_default_timezone_set('Asia/Kolkata'); 
+			 //$date1 = date('Y-M-D h:i:s A', time());
+			$date1 = date('Y-M-d h:i:s A', time());
+				$data = array
+					(
+						  'Name' => $this->input->post('txt_branch_name'),
+						 'trading_type' => $this->input->post('trading_type'),
+						 'transaction_type' => $this->input->post('transaction_type'),
+						 'entry_price' => $this->input->post('txt_price'),
+						 'Target1' => $this->input->post('Target1'),
+						 'Target2' => $this->input->post('Target2'),
+						'Toploss' => $this->input->post('Toploss'),
+						'Comment' => $this->input->post('Comment'),
+						'date' => $date1,
+						'date_time' => $date1,
 				);
-           		$this->db->insert($this->log, $data_company);			
-				 return $vendor_id;
+		$this->db->insert($this->table_script, $data);						
+		$vendor_id = $this->db->insert_id();							
+ $data_company = array
+		(
+
+						'Name' => $this->input->post('txt_branch_name'),
+						 'trading_type' => $this->input->post('trading_type'),
+						 'transaction_type' => $this->input->post('transaction_type'),
+						 'entry_price' => $this->input->post('txt_price'),
+						 'Target1' => $this->input->post('Target1'),
+						 'Target2' => $this->input->post('Target2'),
+						'Toploss' => $this->input->post('Toploss'),
+						'Comment' => $this->input->post('Comment'),
+						'action_performed' =>"Insert",								
+						'script_log_id' => $vendor_id,
+
+		);
+		$this->db->insert($this->log, $data_company);			
+		 return $vendor_id;
        //   $branch = $this->db->insert_id();
     /*    $query = $this->db->query('SELECT * FROM tbl_level');
         $results = $query->result_array();

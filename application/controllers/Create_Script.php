@@ -121,12 +121,16 @@ class Create_Script extends CI_Controller
 	{
 		$this->load->model('Create_Script_Data');
 		$last_inserted_id = $this->Create_Script_Data->db_save_branch_data();    
-		if($last_inserted_id==0){
+		if( $last_inserted_id == 0)
+		{
 			echo 0;
 		}
        	else
 		{
 			echo 1;
+			//*Creating Script Log**//
+			$this->Create_Script_Data->save_script_log($last_inserted_id);
+			
 			//*Generate Notification Here*//
 			$this->load->model('View_Script_Data');
             $script_data = $this->View_Script_Data->fetch_Script_data_to_update($last_inserted_id);

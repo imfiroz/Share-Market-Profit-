@@ -11,8 +11,8 @@ class Stock_Feed extends CI_Controller
 		$this->load->library('session');
 		if (!$this->session->userdata('is_logged_in'))
 		{
-			$this->ctrl_logout();
-			redirect(base_url(), 'refresh');
+		//	$this->ctrl_logout();
+		//	redirect(base_url(), 'refresh');
 		}
 	}
     public function index()
@@ -72,22 +72,56 @@ class Stock_Feed extends CI_Controller
 			else:
 				$trading_type = 'nse_co';
 			endif;
-			$ltp[] = $this->getstock_ltp($trading_type, str_replace(' ', '', $script->Name));
+			$curr_ltp = $this->getstock_ltp($trading_type, str_replace(' ', '', $script->Name));
+			$ltp[] = $curr_ltp;
 			//echo str_replace(' ', '', $script->Name).$trading_type;echo '<br>';
+			
+			//Generating Result
+			$this->script_result($script,$curr_ltp);
+		
 		endforeach;
 		echo json_encode($ltp);
 	}
-	public function script_result($script_id, $ltp)
+	public function script_result( $script , $ltp)
 	{
-		$this->load->model();			
-		if( $ltp >= $target1 && $ltp <= $target2):
-			echo 'Target 1 Achived.';
-		elseif( $ltp >= $target2 ):
-			echo 'All Target Achived.';
-		elseif( $ltp <= $stoploss):
-			echo 'Stop Loss.';
-		else:
-			echo 'Open.';
+			if( $ltp >= $script->Target1 && $ltp <= $script->Target2):
+				$result =  'Target 1 Achived.';
+			elseif( $ltp >= $script->Target2 ):
+				$result =  'All Target Achived.';
+			elseif( $ltp <= $script->Toploss):
+				$result = 'Stop Loss.';
+			else:
+				$result = 'Open.';
+			endif;
+		
+		//*Getting Log Data 
+		$this->load->model('Stock_Token_log');
+		$script_log_data = $this->Stock_Token_log->fetch_log($script->id);
+			//*Updaing Script Log With Result
+		if($script_log_data->result == 'Open.' && $result != 'Open.'):
+			$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
+		elseif($script_log_data->result == 'Target 1 Achived.'):
+			$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
+		endif;
+		
+		if($result_added):
+		//*Send Notification
+			//Find Treading Name and Treading Type
+			if( $script->trading_type == 1 ):
+				$trading_type =  'EQUITY';
+			elseif(	$script->trading_type == 2 ):
+				$trading_type =  'FUTURE & OPTION';
+			elseif(	$script->trading_type == 3 ):
+				$trading_type =  'BTST';
+			elseif(	$script->trading_type == 4 ):
+				$trading_type =  'COMMODITY';
+			endif;
+
+			$notification_txt = $script->Name ." (".$trading_type.") - ".$result; 
+
+			//Create Notification
+			$this->load->model('Create_Notification_Data');
+			$last_inserted_id = $this->Create_Notification_Data->db_save_branch_data($notification_txt);
 		endif;
 		
 	}
