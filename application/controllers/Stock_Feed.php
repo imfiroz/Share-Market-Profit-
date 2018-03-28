@@ -84,7 +84,9 @@ class Stock_Feed extends CI_Controller
 	}
 	public function script_result( $script , $ltp)
 	{
-			if( $ltp >= $script->Target1 && $ltp <= $script->Target2):
+		//*Script Buy Condition 
+		if( $script->transaction_type == 1 ):
+			if(    $ltp >= $script->Target1 && $ltp < $script->Target2):
 				$result =  'Target 1 Achived.';
 			elseif( $ltp >= $script->Target2 ):
 				$result =  'All Target Achived.';
@@ -93,6 +95,18 @@ class Stock_Feed extends CI_Controller
 			else:
 				$result = 'Open.';
 			endif;
+		else:
+		//*Script Sell Condition 
+			if( $ltp <= $script->Target1 && $ltp > $script->Target2):
+				$result =  'Target 1 Achived.';
+			elseif( $ltp <= $script->Target2 ):
+				$result =  'All Target Achived.';
+			elseif( $script->Toploss >= $ltp ):
+				$result = 'Stop Loss.';
+			else:
+				$result = 'Open.';
+			endif;
+		endif;
 		
 		//*Getting Log Data 
 		$this->load->model('Stock_Token_log');
