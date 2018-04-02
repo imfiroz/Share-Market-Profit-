@@ -92,8 +92,8 @@ class Stock_Feed extends CI_Controller
 				$result =  'All Target Achived.';
 			elseif( $ltp <= $script->Toploss):
 				$result = 'Stop Loss.';
-			else:
-				$result = 'Open.';
+			//else:
+				//$result = 'Open.';
 			endif;
 		else:
 		//*Script Sell Condition 
@@ -103,40 +103,59 @@ class Stock_Feed extends CI_Controller
 				$result =  'All Target Achived.';
 			elseif( $script->Toploss >= $ltp ):
 				$result = 'Stop Loss.';
-			else:
-				$result = 'Open.';
+			//else:
+				//$result = 'Open.';
 			endif;
 		endif;
-		
-		//*Getting Log Data 
+		if( $ltp != NULL )
+		{
+			//*Getting Log Data 
+			$this->load->model('Stock_Token_log');
+			$script_log_data = $this->Stock_Token_log->fetch_log($script->id);
+				//*Updaing Script Log With Result
+			if($script_log_data->result == 'Open.' ):
+				$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
+			elseif($script_log_data->result == 'Target 1 Achived.' && $result == 'All Target Achived.'):
+				$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
+				//**Update script to is_active = 0
+				
+			
+			endif;
+
+			if($result_added):
+			//*Send Notification
+				//Find Treading Name and Treading Type
+				if( $script->trading_type == 1 ):
+					$trading_type =  'EQUITY';
+				elseif(	$script->trading_type == 2 ):
+					$trading_type =  'FUTURE & OPTION';
+				elseif(	$script->trading_type == 3 ):
+					$trading_type =  'BTST';
+				elseif(	$script->trading_type == 4 ):
+					$trading_type =  'COMMODITY';
+				endif;
+
+				$notification_txt = $script->Name ." (".$trading_type.") - ".$result; 
+
+				//Create Notification
+				$this->load->model('Create_Notification_Data');
+				$last_inserted_id = $this->Create_Notification_Data->db_save_branch_data($notification_txt);
+			endif;
+		}
+	}
+	public function remove_script($script_id, $script_log_result)
+	{
 		$this->load->model('Stock_Token_log');
-		$script_log_data = $this->Stock_Token_log->fetch_log($script->id);
-			//*Updaing Script Log With Result
-		if($script_log_data->result == 'Open.' && $result != 'Open.'):
-			$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
-		elseif($script_log_data->result == 'Target 1 Achived.'):
-			$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
-		endif;
-		
-		if($result_added):
-		//*Send Notification
-			//Find Treading Name and Treading Type
-			if( $script->trading_type == 1 ):
-				$trading_type =  'EQUITY';
-			elseif(	$script->trading_type == 2 ):
-				$trading_type =  'FUTURE & OPTION';
-			elseif(	$script->trading_type == 3 ):
-				$trading_type =  'BTST';
-			elseif(	$script->trading_type == 4 ):
-				$trading_type =  'COMMODITY';
-			endif;
-
-			$notification_txt = $script->Name ." (".$trading_type.") - ".$result; 
-
-			//Create Notification
-			$this->load->model('Create_Notification_Data');
-			$last_inserted_id = $this->Create_Notification_Data->db_save_branch_data($notification_txt);
-		endif;
-		
+		if( $script_log_result == 'Stop Loss.' || $script_log_result == 'All Target Achived.')
+		{
+			$this->Stock_Token_log->inactive_script($script_id);
+		}
+		//elseif ( $script_log_result == 'Target 1 Achived.' )
+		//{
+			//$date = date('Y-M-d h:i:s A', time());
+			//if($date == ''):
+				
+			//endif;
+		//}
 	}
 }
