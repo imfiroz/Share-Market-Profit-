@@ -115,10 +115,14 @@ class Stock_Feed extends CI_Controller
 				//*Updaing Script Log With Result
 			if($script_log_data->result == 'Open.' ):
 				$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
+				//**Updating script is_active = 0
+				if($result == 'Stop Loss.'):
+					$this->remove_script($script_log_data->script_id , $result);
+				endif;
 			elseif($script_log_data->result == 'Target 1 Achived.' && $result == 'All Target Achived.'):
 				$result_added = $this->Stock_Token_log->update_script_log($script_log_data->id, $result);
 				//**Update script to is_active = 0
-				
+				$this->remove_script($script_log_data->script_id , $result);
 			
 			endif;
 
